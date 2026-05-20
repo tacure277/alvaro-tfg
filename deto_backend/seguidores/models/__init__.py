@@ -1,0 +1,1 @@
+from .seguidor_model import Seguidor

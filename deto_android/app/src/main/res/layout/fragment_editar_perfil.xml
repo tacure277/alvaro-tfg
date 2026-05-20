@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/negro"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp"
+        android:background="@color/negro">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editar Perfil"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:fontFamily="@font/oooh_baby"
+            android:textColor="@color/verde_claro"
+            android:layout_gravity="center"
+            android:layout_marginBottom="32dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="24dp"
+            android:visibility="gone">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgAvatarEdit"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@android:drawable/ic_menu_myplaces"
+                app:shapeAppearanceOverlay="@style/CircleImageView"
+                android:scaleType="centerCrop"
+                android:background="@color/gris_oscuro"
+                app:strokeColor="@color/verde_claro"
+                app:strokeWidth="2dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCambiarFoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Cambiar foto"
+                android:textColor="@color/verde_claro"
+                style="@style/Widget.Material3.Button.TextButton" />
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutCustom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="Nombre completo">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/TextInputEditTextCustom"
+                android:id="@+id/etNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@android:color/transparent"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutCustom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="Descripción">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/TextInputEditTextCustom"
+                android:id="@+id/etDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:padding="16dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:background="@android:color/transparent"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginVertical="16dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/gris_oscuro" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cambiar contraseña"
+                android:textColor="@color/verde_claro"
+                android:textSize="14sp"
+                android:paddingHorizontal="16dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/gris_oscuro" />
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutCustom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="Contraseña actual"
+            app:passwordToggleEnabled="true"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/TextInputEditTextCustom"
+                android:id="@+id/etPasswordActual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:inputType="textPassword"
+                android:background="@android:color/transparent"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutCustom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="Nueva contraseña"
+            app:passwordToggleEnabled="true"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/TextInputEditTextCustom"
+                android:id="@+id/etNuevaPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:inputType="textPassword"
+                android:background="@android:color/transparent"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutCustom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:hint="Confirmar contraseña"
+            app:passwordToggleEnabled="true"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/TextInputEditTextCustom"
+                android:id="@+id/etConfirmarPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:inputType="textPassword"
+                android:background="@android:color/transparent"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="12dp"
+            android:text="Guardar Cambios"
+            android:textSize="16sp"
+            android:textColor="@color/negro"
+            android:textStyle="bold"
+            app:backgroundTint="@color/verde_claro"
+            app:cornerRadius="28dp"
+            app:rippleColor="@color/verde_oscuro"
+            android:elevation="4dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Cancelar"
+            android:textSize="16sp"
+            android:textColor="@color/verde_claro"
+            android:textStyle="bold"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            app:strokeColor="@color/verde_claro"
+            app:strokeWidth="2dp"
+            app:cornerRadius="28dp"
+            app:rippleColor="@color/verde_oscuro"/>
+
+    </LinearLayout>
+</ScrollView>

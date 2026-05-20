@@ -1,0 +1,1 @@
+from .comentario_admin import ComentarioAdmin

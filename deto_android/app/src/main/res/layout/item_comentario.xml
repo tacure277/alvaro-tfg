@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/negro"
+    android:paddingHorizontal="0dp"
+    android:paddingVertical="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="4dp"
+        android:paddingBottom="8dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgAvatarComentario"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@android:drawable/ic_menu_myplaces"
+            app:shapeAppearanceOverlay="@style/CircleImageView"
+            android:background="@color/gris_oscuro"
+            android:scaleType="centerCrop"
+            android:layout_marginEnd="10dp"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tvAutorComentario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nombre usuario"
+            android:textSize="15sp"
+            android:textColor="@color/blanco"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            tools:text="María González" />
+
+        <TextView
+            android:id="@+id/tvFechaComentario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1h"
+            android:textSize="12sp"
+            android:textColor="@color/gris_claro" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvContenidoComentario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contenido del comentario..."
+        android:textSize="14sp"
+        android:textColor="@color/gris_muy_claro"
+        android:lineSpacingMultiplier="1.4"
+        android:paddingHorizontal="5dp"
+        android:paddingBottom="10dp"
+        tools:text="publi" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/gris_oscuro"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginBottom="8dp" />
+
+</LinearLayout>

@@ -1,0 +1,27 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Deto_android" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.Deto_android" parent="Base.Theme.Deto_android" />
+    <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+    <style name="CircleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+
+    <style name="TextInputLayoutCustom" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/blanco</item>
+        <item name="hintTextColor">@color/blanco</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textColorHint">@color/gris_claro</item>
+    </style>
+
+    <style name="TextInputEditTextCustom" parent="Widget.MaterialComponents.TextInputEditText.FilledBox">
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textColorHint">@color/verde_claro</item>
+    </style>
+</resources>

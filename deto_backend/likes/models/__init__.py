@@ -1,0 +1,1 @@
+from .like_model import Like
