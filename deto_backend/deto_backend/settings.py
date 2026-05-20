@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "ideas",
        'likes',
     'seguidores',
+    'mensajes',
 
 
 

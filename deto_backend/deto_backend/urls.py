@@ -10,8 +10,9 @@ urlpatterns = [
     
     path('', include('ideas.urls')),
     path('', include('comentarios.urls')),
-path('likes/', include('likes.urls')),
-    path('seguidores/', include('seguidores.urls')), 
+    path('likes/', include('likes.urls')),
+    path('seguidores/', include('seguidores.urls')),
+    path('mensajes/', include('mensajes.urls')),  # ✅ NUEVO
 ]
 
 if settings.DEBUG:
