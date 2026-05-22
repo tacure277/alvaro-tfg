@@ -6,13 +6,16 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('usuarios.urls')),  
+    path('auth/', include('usuarios.urls')),
     
-    path('', include('ideas.urls')),
-    path('', include('comentarios.urls')),
+    # ✅ RUTAS ESPECÍFICAS PRIMERO
     path('likes/', include('likes.urls')),
     path('seguidores/', include('seguidores.urls')),
-    path('mensajes/', include('mensajes.urls')),  # ✅ NUEVO
+    path('mensajes/', include('mensajes.urls')),
+    
+    # ⚠️ RUTAS GENÉRICAS AL FINAL
+    path('', include('ideas.urls')),
+    path('', include('comentarios.urls')),
 ]
 
 if settings.DEBUG:

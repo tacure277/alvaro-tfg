@@ -6,12 +6,12 @@ class UsuarioSerializer(serializers.ModelSerializer):
     num_seguidores = serializers.SerializerMethodField()
     num_siguiendo = serializers.SerializerMethodField()
     num_ideas = serializers.SerializerMethodField()
-    lo_sigo = serializers.SerializerMethodField()  # ✅ NUEVO
+    lo_sigo = serializers.SerializerMethodField()  
 
     class Meta:
         model = Usuario
         fields = ['usuario_id', 'nombre', 'correo', 'descripcion', 'fecha_creacion', 
-                  'foto_perfil_url', 'num_seguidores', 'num_siguiendo', 'num_ideas', 'lo_sigo']  # ✅ AÑADIDO
+                  'foto_perfil_url', 'num_seguidores', 'num_siguiendo', 'num_ideas', 'lo_sigo'] 
     
     def get_foto_perfil_url(self, obj):
         if obj.foto_perfil:

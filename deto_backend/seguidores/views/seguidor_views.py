@@ -1,10 +1,10 @@
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from seguidores.models.seguidor_model import Seguidor
 from usuarios.models.usuario_model import Usuario
-
+from django.db.models import Q
 
 @api_view(['POST'])
 def seguir(request, usuario_id):
@@ -68,8 +68,6 @@ def lista_siguiendo(request, usuario_id):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def verificar_si_sigue(request, usuario_id, seguidor_id):
- 
-
     try:
         seguidor = Usuario.objects.get(usuario_id=seguidor_id)
         seguido = Usuario.objects.get(usuario_id=usuario_id)
@@ -83,3 +81,20 @@ def verificar_si_sigue(request, usuario_id, seguidor_id):
     
     except Usuario.DoesNotExist:
         return Response({'error': 'Usuario no encontrado'}, status=404)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def buscar_usuarios(request):
+    query = request.query_params.get('q', '')
+    
+    if query:
+        usuarios = Usuario.objects.filter(
+            Q(nombre__icontains=query) | Q(correo__icontains=query)
+        )
+    else:
+        usuarios = Usuario.objects.all()
+    
+    from usuarios.serializers.usuario_serializers import UsuarioSerializer
+    serializer = UsuarioSerializer(usuarios, many=True, context={'request': request})
+    return Response(serializer.data, status=200)

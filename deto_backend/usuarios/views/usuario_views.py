@@ -54,17 +54,13 @@ def login(request):
     serializer = LoginSerializer(data=request.data)
 
     if not serializer.is_valid():
-
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     correo = serializer.validated_data['correo']
     contraseña = serializer.validated_data['contraseña']
 
-
-
     try:
         usuario = Usuario.objects.get(correo=correo)
-
 
         password_valida = check_password(contraseña, usuario.contraseña)
         if not password_valida:
@@ -99,11 +95,9 @@ def perfil(request):
     except Usuario.DoesNotExist:
         return Response({'error': 'Usuario no encontrado'}, status=404)
 
-
     if request.method == 'GET':
         serializer = UsuarioSerializer(usuario, context={'request': request})
         return Response(serializer.data, status=200)
-
 
     elif request.method == 'PUT':
         nombre = request.data.get('nombre')
@@ -118,6 +112,7 @@ def perfil(request):
 
         serializer = UsuarioSerializer(usuario, context={'request': request})
         return Response(serializer.data, status=200)
+
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -186,9 +181,7 @@ def eliminar_foto_perfil(request):
         usuario.save()
         return Response({'mensaje': 'Foto eliminada correctamente'}, status=200)
     else:
-
         return Response({'error': 'El usuario no tiene foto de perfil'}, status=400)
-
 
 
 @api_view(['PUT'])
@@ -214,29 +207,27 @@ def actualizar_perfil(request):
 
     serializer = UsuarioSerializer(usuario, context={'request': request})
     return Response(serializer.data, status=200)
+
+
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def buscar_usuarios(request):
     query = request.query_params.get('q', '').strip()
     
-    if not query or len(query) < 2:
-        return Response({'error': 'La búsqueda debe tener al menos 2 caracteres'}, status=400)
-    
-    # Buscar por nombre o correo
-    usuarios = Usuario.objects.filter(
-        Q(nombre__icontains=query) | Q(correo__icontains=query)
-    )[:20]  # Límite de 20 resultados
+    if not query:
+        usuarios = Usuario.objects.all()[:50]
+    else:
+        usuarios = Usuario.objects.filter(
+            Q(nombre__icontains=query) | Q(correo__icontains=query)
+        )[:20]
     
     serializer = UsuarioSerializer(usuarios, many=True, context={'request': request})
     return Response(serializer.data)
- 
+
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def cambiar_password(request):
-    """
-    Endpoint para cambiar la contraseña
-    POST /auth/cambiar-password/
-    """
     usuario_id = request.auth.payload.get('user_id')
 
     try:
@@ -269,14 +260,11 @@ def cambiar_password(request):
     usuario.save()
 
     return Response({'mensaje': 'Contraseña actualizada correctamente'}, status=200)
+
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def editar_perfil(request):
-    """
-    Edita el perfil del usuario (nombre, descripción y opcionalmente foto)
-    POST /auth/perfil/editar/
-    Campos: nombre (RequestBody), descripcion (RequestBody), foto_perfil (MultipartBody opcional)
-    """
     usuario_id = request.auth.payload.get('user_id')
     
     try:
@@ -297,7 +285,6 @@ def editar_perfil(request):
             if os.path.isfile(usuario.foto_perfil.path):
                 os.remove(usuario.foto_perfil.path)
         
-        # Guardar nueva foto
         timestamp = int(time.time())
         extension = os.path.splitext(foto.name)[1]
         nombre_archivo = f"usuarios/{usuario.usuario_id}_{timestamp}{extension}"

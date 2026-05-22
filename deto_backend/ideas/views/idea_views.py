@@ -36,12 +36,15 @@ def crear_idea(request):
     if isinstance(es_anonima, str):
         es_anonima = es_anonima.lower() == 'true'
 
+    # ✅ CORREGIDO: Acepta 'archivo' (nuevo) o 'imagen' (retrocompatibilidad)
+    archivo = request.FILES.get('archivo') or request.FILES.get('imagen')
+
     try:
         idea = Idea.objects.create(
             titulo=request.data.get('titulo'),
             descripcion=request.data.get('descripcion'),
             es_anonima=es_anonima,
-            archivo=request.FILES.get('imagen'),  
+            archivo=archivo,
             usuario=usuario
         )
     except Exception as e:
@@ -100,7 +103,10 @@ def editar_idea(request, idea_id):
         if 'descripcion' in request.data:
             idea.descripcion = request.data['descripcion']
         
-        if 'imagen' in request.FILES:
+        # ✅ CORREGIDO: Acepta 'archivo' o 'imagen'
+        nuevo_archivo = request.FILES.get('archivo') or request.FILES.get('imagen')
+        
+        if nuevo_archivo:
             if idea.archivo:
                 try:
                     if os.path.isfile(idea.archivo.path):
@@ -108,7 +114,7 @@ def editar_idea(request, idea_id):
                 except:
                     pass
             
-            idea.archivo = request.FILES['imagen']
+            idea.archivo = nuevo_archivo
         
         idea.save()
         
